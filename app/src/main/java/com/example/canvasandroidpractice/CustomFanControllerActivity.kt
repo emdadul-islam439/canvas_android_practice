@@ -15,14 +15,14 @@ class CustomFanControllerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_fan_controller)
         var dialView = findViewById<DialView>(R.id.dialView)
-        dialView.setOnClickListener {
+        /*dialView.setOnClickListener {
             Toast.makeText(this, "TAPPED!!", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    /*override fun onTouchEvent(event: MotionEvent?): Boolean {
         return super.onTouchEvent(event)
         val ami = TAG
         Log.d("emdad", "onTouchEvent: MAIN TOUCH.........>>>>>>>")
-    }
+    }*/
 }

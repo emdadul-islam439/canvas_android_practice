@@ -58,13 +58,13 @@ class DialView @JvmOverloads constructor(
 
     init {
         Log.d(TAG, "DialView_init: context = ${context}  attrs = $attrs  defStyleAttr = $defStyleAttr")
-//        isClickable = true
+        isClickable = true
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+/*    override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.d(TAG, "onTouchEvent: STARTED>>>>>>>>>>>")
         return super.onTouchEvent(event)
-    }
+    }*/
 
     override fun performClick(): Boolean {
         Log.d(TAG, "performClick: STARTED...")
