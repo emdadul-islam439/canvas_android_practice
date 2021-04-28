@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.withStyledAttributes
 import com.example.canvasandroidpractice.R
 import kotlin.math.cos
 import kotlin.math.log
@@ -49,6 +50,10 @@ class DialView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+    private var fanSpeedLowColor = 0
+    private var fanSpeedMediumColor = 0
+    private var fanSpeedMaxColor = 0
+
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         textAlign = Paint.Align.CENTER
@@ -59,6 +64,12 @@ class DialView @JvmOverloads constructor(
     init {
         Log.d(TAG, "DialView_init: context = ${context}  attrs = $attrs  defStyleAttr = $defStyleAttr")
         isClickable = true
+
+        context.withStyledAttributes(attrs, R.styleable.DialView) {
+            fanSpeedLowColor = getColor(R.styleable.DialView_fanColor1, 0)
+            fanSpeedMediumColor = getColor(R.styleable.DialView_fanColor2, 0)
+            fanSpeedMaxColor = getColor(R.styleable.DialView_fanColor3, 0)
+        }
     }
 
 /*    override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -122,15 +133,22 @@ class DialView @JvmOverloads constructor(
         Log.d(TAG, "computeXYForSpeed: after_XY.... x= $x  y=$y")
     }
     override fun onDraw(canvas: Canvas) {
-        Log.d(TAG, "onDraw: >>>>>>>>>>> canvas = $canvas")
+        Log.d(TAG, "onDraw: >>>>>>>>>>> canvas = ${canvas}")
         Log.d(TAG, "onDraw: CALLED FROM : ${Exception().getStackTrace()[0].getClassName()} >>> ${Exception().stackTrace[0].methodName}")
         Log.d(TAG, "onDraw: CALLED FROM : ${Exception().getStackTrace()[1].getClassName()} >>> ${Exception().stackTrace[1].methodName}")
         Log.d(TAG, "onDraw: CALLED FROM : ${Exception().getStackTrace()[2].getClassName()} >>> ${Exception().stackTrace[2].methodName}")
         super.onDraw(canvas)
         // Set dial background color to green if selection not off.
         setBackgroundColor(Color.YELLOW)
+
         Log.d(TAG, "onDraw: before_paint.color  = $paint")
-        paint.color = if (fanSpeed == FanSpeed.OFF) Color.GRAY else Color.GREEN
+//        paint.color = if (fanSpeed == FanSpeed.OFF) Color.GRAY else Color.GREEN
+        paint.color = when (fanSpeed) {
+            FanSpeed.OFF -> Color.GRAY
+            FanSpeed.LOW -> fanSpeedLowColor
+            FanSpeed.MEDIUM -> fanSpeedMediumColor
+            FanSpeed.HIGH -> fanSpeedMaxColor
+        } as Int
         Log.d(TAG, "onDraw: after_paint.color  = $paint")
 
         // Draw the dial.
