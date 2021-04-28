@@ -3,7 +3,7 @@ package com.example.canvasandroidpractice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-import com.example.canvasandroidpractice.mini_paint.MyCanvasView
+import com.example.canvasandroidpractice.mini_paint_classes.MyCanvasView
 
 class MiniPaintActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.canvasandroidpractice.mini_paint
+package com.example.canvasandroidpractice.mini_paint_classes
 
 import android.content.Context
 import android.graphics.*
